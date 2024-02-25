@@ -1,5 +1,4 @@
 ---
-description: Mes write-ups des CTF effectués sur https://tryhackme.com
 cover: .gitbook/assets/default_tryhackme.png
 coverY: -41
 layout:
@@ -18,6 +17,10 @@ layout:
     visible: true
 ---
 
-# THM  - CTF writeups
+# THM  - CTF write-ups
+
+Site Gitbook : [https://olb.gitbook.io/thm-ctf-write-ups/](https://olb.gitbook.io/thm-ctf-write-ups/)
+
+Mes write-ups des CTF effectués sur 'Try Hack me' : https://tryhackme.com
 
 Mon profil THM : [https://tryhackme.com/p/OlivierLB](https://tryhackme.com/p/OlivierLB)
