@@ -2,6 +2,8 @@
 
 {% embed url="https://tryhackme.com/room/agentsudoctf" %}
 
+Site Gitbook : https://olb.gitbook.io/thm-ctf-write-ups/agent-sudo
+
 ## Reconnaissance
 
 {% code title="création répertoire de travail" %}
