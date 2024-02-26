@@ -22,7 +22,7 @@ export IP=10.10.142.227
 nmap -sC -sV -oN nmap-report.txt $IP
 ```
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 * un serveur FTP (21)
 * un serveur openssh (22)
@@ -30,7 +30,7 @@ nmap -sC -sV -oN nmap-report.txt $IP
 
 ### Exploration du site Web&#x20;
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * le **user-agent** permet d'accéder au site
 * le user-agent doit contenir le 'codename'
@@ -54,7 +54,7 @@ gobuster dir -u $IP -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
   * on envoie la requête dans le repeater
   * on teste dans le repeater cette histoire d'**agent R** à la place du user-agent habituel...
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 * On tombe sur **la même page** mais cette fois on nous informe qu'il y a **25 employés** (agents ?)
 * pas d'info dans le code source
@@ -87,13 +87,13 @@ NB: on peut aussi modifier ce comportement dans les settings du repeater
 
 <figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-Yes !&#x20;
+Yes ! on est redirigé vers la page `/agent_C_attention.php` qui nous donne des infos:
 
 <figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 * l'agent C = **chris** ?
 * le mot de passe de l'agent C est pourri :)
-  * on a un user et un mdp facile à trouver => **Brute force !**
+  * on a un user + un mdp facile à trouver => **Brute force !**
 
 ## **Exploitation**
 
@@ -197,16 +197,16 @@ steghide info cute-alien.jpg
 
 <figure><img src=".gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
-* c'est louche ! :) Essayons d'extraire avec `steghide extract`
+* c'est louche il demande une passphrase ! Essayons d'extraire avec `steghide extract`
 
 ```
 steghide extract -sf cute-alien.jpg 
 ```
 
-* Il faut une passphrase
+* Il faut une bien une passphrase
 * une passphrase vide ne fonctionne pas (qui ne tente rien ...)
-* la passphrase `QXJlYTUx` ne fonctionne pas non plus .... je suis bloqué :(
-  * je tente 'hash-identifier' sur la chaine  mais il ne connait pas ce hash...
+* la passphrase `QXJlYTUx` ne fonctionne pas non plus .... **je suis bloqué :(**
+  * je tente 'hash-identifier' sur la chaîne  mais il ne connaît pas ce hash...
   * plus qu'une solution : ChatGPT :)
 
 <figure><img src=".gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
@@ -226,7 +226,7 @@ on retente steghide avec ce mdp 'Area51'
 steghide extract -sf cute-alien.jpg 
 ```
 
-YESSS !
+YESSS ! on obtient un fichier `message.txt`
 
 <figure><img src=".gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
@@ -247,14 +247,19 @@ ssh james@$IP
 
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
+on se connecte parfaitement avec le mdp trouvé précédemment
+
 <figure><img src=".gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
 * on récupère le flag de james&#x20;
-* on récupère (via un `'scp'` des familles) la 'vraie' photo de Roswell ( Roswell alien autopsy)
+* on récupère (via un `'scp'` des familles) la 'vraie' photo de l'alien `Alien_autospy.jpg`
+* il y a une recherche Google a faire sur cette photo via Google Image +source  Foxnews pour trouver le terme!:  `"Roswell alien autopsy"`
 
 ## Escalade des privilèges
 
-pas la partie la plus compliquée de ce CTF
+Pas la partie la plus compliquée de ce CTF
 
 ```
 sudo -l
@@ -271,7 +276,7 @@ En cherchant sur Google la permission&#x20;
 &#x20;on tombe sur cet exploit\
 [https://www.exploit-db.com/exploits/47502](https://www.exploit-db.com/exploits/47502)
 
-et on comprends qu'on va pouvoir exécuter bash en root en contournant la règle en place avec ce simple code
+et on comprends en le lisant qu'on va pouvoir exécuter bash en root en contournant la règle en place avec ce simple code
 
 ```
 sudo -u#-1 /bin/bash
