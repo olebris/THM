@@ -2,7 +2,7 @@
 
 {% embed url="https://tryhackme.com/room/agentsudoctf" %}
 
-Site Gitbook : https://olb.gitbook.io/thm-ctf-write-ups/agent-sudo
+Site Gitbook : [https://olb.gitbook.io/thm-ctf-write-ups/agent-sudo](https://olb.gitbook.io/thm-ctf-write-ups/agent-sudo)
 
 ## Reconnaissance
 
