@@ -22,7 +22,7 @@ export IP=10.10.142.227
 nmap -sC -sV -oN nmap-report.txt $IP
 ```
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 * un serveur FTP (21)
 * un serveur openssh (22)
@@ -30,7 +30,7 @@ nmap -sC -sV -oN nmap-report.txt $IP
 
 ### Exploration du site Web&#x20;
 
-<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * le **user-agent** permet d'accéder au site
 * le user-agent doit contenir le 'codename'
@@ -54,14 +54,14 @@ gobuster dir -u $IP -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
   * on envoie la requête dans le repeater
   * on teste dans le repeater cette histoire d'**agent R** à la place du user-agent habituel...
 
-<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * On tombe sur **la même page** mais cette fois on nous informe qu'il y a **25 employés** (agents ?)
 * pas d'info dans le code source
 * Testons d'autres user-agent en supposant que ce sont des lettres de l'Alphabet (25 + agent R = 26 Agents?)
   * on envoie la requête dans l'intruder pour brute-forcer le user-agent
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 on se fait un payload rapidement comme ceci:
 
@@ -71,25 +71,25 @@ echo {A..Z} | tr " " "\n" > alphabet.txt
 
 et on le charge dans Burp puis `start attack`
 
-<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 On note une redirection 302 pour le `user-agent C`
 
-<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 :warning: Il y a une info à savoir : **Burp ne suit pas les redirections par défaut** !\
 il va donc falloir rejouer la requête dans le repeater mais en autorisant la redirection 302 cette fois...
 
-<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 renvoyer la requête avec le `user-agent C` et cliquer sur le bouton `Follow redirection` qui apparaît ;)\
 NB: on peut aussi modifier ce comportement dans les settings du repeater
 
-<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 Yes ! on est redirigé vers la page `/agent_C_attention.php` qui nous donne des infos:
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 * l'agent C = **chris** ?
 * le mot de passe de l'agent C est pourri :)
@@ -105,7 +105,7 @@ Yes ! on est redirigé vers la page `/agent_C_attention.php` qui nous donne des 
 hydra -l chris -P /usr/share/wordlists/rockyou.txt $IP ftp    
 ```
 
-<figure><img src=".gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 * le mdp de chris est **`crystal`** (et donc bien pourri )
 * on se connecte avec **chris/crystal**
@@ -114,7 +114,7 @@ hydra -l chris -P /usr/share/wordlists/rockyou.txt $IP ftp
 ftp -A chris@$IP
 ```
 
-<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% code title="on récupère tous les fichier" %}
 ```
@@ -251,7 +251,7 @@ on se connecte parfaitement avec le mdp trouvé précédemment
 
 <figure><img src=".gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * on récupère le flag de james&#x20;
 * on récupère (via un `'scp'` des familles) la 'vraie' photo de l'alien `Alien_autospy.jpg`

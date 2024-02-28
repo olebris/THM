@@ -1,5 +1,5 @@
 # Table of contents
 
 * [💀 THM  - CTF write-ups](README.md)
-* [🤖 Agent Sudo](agent-sudo.md)
 * [🏫 Vulniversity](vulniversity.md)
+* [🤖 Agent Sudo](agent-sudo.md)
