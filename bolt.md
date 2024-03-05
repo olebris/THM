@@ -1,4 +1,4 @@
-# Bolt
+# 🐕 Bolt
 
 {% embed url="https://tryhackme.com/room/bolt" %}
 
