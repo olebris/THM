@@ -6,6 +6,7 @@
 * [⚱️ Overpass](overpass.md)
 * [☢️ Takeover](takeover.md)
 * [🐕 Bolt](bolt.md)
+* [💼 Basic Pentesting](basic-pentesting.md)
 
 ## CTF - Write up à venir
 
