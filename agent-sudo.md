@@ -45,11 +45,11 @@ gobuster dir -u $IP -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
 ```
 {% endcode %}
 
-* Ne donne rien d'intéressant cette fois :)
+* le Directory BruteForce ne donne rien d'intéressant ...
 
 ### Burpsuite
 
-* Utilisons Burpsuite pour spoofer le user-agent
+* Utilisons Burpsuite pour changer le user-agent
   * on intercepte [http://10.10.142.227/](http://10.10.142.227/) dans le proxy
   * on envoie la requête dans le repeater
   * on teste dans le repeater cette histoire d'**agent R** à la place du user-agent habituel...
@@ -82,17 +82,17 @@ il va donc falloir rejouer la requête dans le repeater mais en autorisant la re
 
 <figure><img src=".gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-renvoyer la requête avec le `user-agent C` et cliquer sur le bouton `Follow redirection` qui apparaît ;)\
+renvoyer la requête avec le `user-agent C` et cliquer sur le bouton `Follow redirection` qui apparaît.\
 NB: on peut aussi modifier ce comportement dans les settings du repeater
 
 <figure><img src=".gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-Yes ! on est redirigé vers la page `/agent_C_attention.php` qui nous donne des infos:
+Finalement, on est redirigé vers la page `/agent_C_attention.php` qui nous donne des infos:
 
 <figure><img src=".gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 * l'agent C = **chris** ?
-* le mot de passe de l'agent C est pourri :)
+* le mot de passe de l'agent C est faible
   * on a un user + un mdp facile à trouver => **Brute force !**
 
 ## **Exploitation**
@@ -107,7 +107,7 @@ hydra -l chris -P /usr/share/wordlists/rockyou.txt $IP ftp
 
 <figure><img src=".gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
-* le mdp de chris est **`crystal`** (et donc bien pourri )
+* le mdp de chris est **`crystal`**
 * on se connecte avec **chris/crystal**
 
 ```
@@ -204,14 +204,12 @@ steghide extract -sf cute-alien.jpg
 ```
 
 * Il faut une bien une passphrase
-* une passphrase vide ne fonctionne pas (qui ne tente rien ...)
-* la passphrase `QXJlYTUx` ne fonctionne pas non plus .... **je suis bloqué :(**
+* une passphrase vide ne fonctionne pas
+* la passphrase `QXJlYTUx` ne fonctionne pas non plus ... bloqué :(
   * je tente 'hash-identifier' sur la chaîne  mais il ne connaît pas ce hash...
-  * plus qu'une solution : ChatGPT :)
+  * qu'en dit ChatGPT ?
 
 <figure><img src=".gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
-
-Merci chatGPT !!! :wink:
 
 Pour info pour décoder "soi-même":
 
@@ -226,7 +224,7 @@ on retente steghide avec ce mdp 'Area51'
 steghide extract -sf cute-alien.jpg 
 ```
 
-YESSS ! on obtient un fichier `message.txt`
+Et voila ! on obtient un fichier `message.txt`
 
 <figure><img src=".gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
@@ -247,19 +245,19 @@ ssh james@$IP
 
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
-on se connecte parfaitement avec le mdp trouvé précédemment
+on se connecte avec le mdp trouvé précédemment
 
 <figure><img src=".gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * on récupère le flag de james&#x20;
-* on récupère (via un `'scp'` des familles) la 'vraie' photo de l'alien `Alien_autospy.jpg`
+* on récupère via scp la 'vraie' photo de l'alien `Alien_autospy.jpg`
 * il y a une recherche Google a faire sur cette photo via Google Image +source  Foxnews pour trouver le terme!:  `"Roswell alien autopsy"`
 
 ## Escalade des privilèges
 
-Pas la partie la plus compliquée de ce CTF
+
 
 ```
 sudo -l

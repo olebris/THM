@@ -41,7 +41,7 @@ Le formulaire envoie le username et le password saisi a une API: `/api/login`\
 
 ## Exploitation
 
-Cette fois pas de user , pas de password je tente un bruteforce Hydra de l'API `/api/login` sur les utilisateur ninja, pars, szymex etc. de cette page [http://10.10.232.151/aboutus/](http://10.10.232.151/aboutus/) mais sans succès. Un brute force user + password a partir des seclists habituelles n'aboutit pas non plus ...
+Cette fois pas de user et pas de password, je tente un bruteforce Hydra de l'API `/api/login` sur les utilisateur ninja, pars, szymex etc. de cette page [http://10.10.232.151/aboutus/](http://10.10.232.151/aboutus/) mais sans succès. Un brute force user + password a partir des seclists habituelles n'aboutit pas non plus ...
 
 
 
@@ -125,11 +125,11 @@ Il ne reste plus qu'à créer l'arborescence du serveur initial sur notre Kali
 
 <figure><img src=".gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
-Et créer un script `buildscript.sh` custom comme par exemple un bon vieux reverseshell:
+Et créer un script `buildscript.sh` custom comme par exemple un bon vieux reverseshell en bash:
 
 <figure><img src=".gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
 
-NB: Dans certaines conditions le shebang est obligatoire au début du fichier : `#!/bin/bash`
+NB: ne pas oublier le shebang  au début du fichier : `#!/bin/bash`
 
 Vous devez avoir cette arborescence
 

@@ -18,7 +18,7 @@ nmap -sC -sV -oN nmap-report.txt $IP
 
 Ports / services ouverts:
 
-* ftp (22)
+* ftp (21)
 * ssh (23)
 * samba (139/445)
 * proxy Squid (3128)
@@ -29,7 +29,7 @@ Petit tour sur le site [http://10.10.107.33:3333/](http://10.10.107.33:3333/)
 * code source : c'est un site sous Wordpress (pas d'info visible de sa version ...)
 * pas d'accès à `/wp-admin` ou `/admin`
 * pas d'accès au `robots.txt` ou au `sitemap.xml`
-* On lance donc un Brute Force de directory pour voir...
+* On lance un Directory Brute Force pour voir...
 
 {% code overflow="wrap" %}
 ```
@@ -39,11 +39,11 @@ gobuster dir -u http://$IP:3333 -w /usr/share/wordlists/dirbuster/directory-list
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-* le répertoire `/internal` attire rapidement l'attention
+* le répertoire `/internal` attire l'attention:
 
 <figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-* C'est un formulaire d'upload de fichier :)
+* C'est un formulaire d'upload de fichier
 *   Ici on est bien aidé par l'auteur de la Box qui nous invite a tester les extensions suivantes
 
     * .php
@@ -75,7 +75,7 @@ On va donc pouvoir uploader un reverse-shell en php par exemple [celui-ci](https
 <figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 Une fois chargé via le formulaire, on va le retrouver dans [http://10.10.107.33:3333/internal/uploads/](http://10.10.107.33:3333/internal/uploads/) \
-NB: ici l'auteur de la box nous aide en indiquant ce sous-répertoire mais en relançant gobuster (qui n'est pas récursif) sur `'http://10.10.107.33/internal'` on découvre facilement ce répertoire ;)
+NB: l'auteur de la box nous aide en indiquant ce sous-répertoire mais en relançant gobuster (qui n'est pas récursif) sur `'http://10.10.107.33/internal'` on découvre facilement ce répertoire )
 
 <figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
@@ -93,7 +93,7 @@ Normalement on se retrouve immédiatement  avec un shell actif sur la cible en t
 
 On nous demande le flag du user `bill`.
 
-Ici pas besoin d'escalade de privilège pour trouver le flag puisque le répertoire `home` de bill est accessible en lecture à tous les utilisateurs (mode CTF easy ! )
+Pas besoin d'escalade de privilège pour trouver le flag puisque le répertoire `home` de bill est accessible en lecture à tous les utilisateurs
 
 ```
 cat /home/bill/user.txt

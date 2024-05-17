@@ -32,18 +32,13 @@ Dès lors, l'URL [https://futurevera.thm](https://futurevera.thm) fonctionne mai
 
 ## Gobuster  (directory)
 
-&#x20;ne donne rien ...
+&#x20;ne donne rien&#x20;
 
-Autre outils essayés&#x20;
-
-* Nikto => rien
-* enum4linux => rien
-
-Je bloque ... Je tente finalement  de chercher des sous domaines:
+Il faut chercher des sous domaines:
 
 ## Gobuster (vhost)
 
-&#x20;vhost et pas dns car ici il n'a pas de serveur DNS qui renvoie des infos sur ce domaine futurevera.thm
+&#x20;vhost et pas dns car ici il n'a pas de serveur DNS qui renvoie des infos sur ce domaine "local" futurevera.thm
 
 {% code overflow="wrap" %}
 ```
@@ -51,8 +46,8 @@ gobuster vhost -u https://futurevera.thm -t 4 -w /usr/share/seclists/Discovery/D
 ```
 {% endcode %}
 
-* Ne pas oublier --`append-domain` : concaténer sous domaine et domaine&#x20;
-* Et `–k` pour ignorer les certificats non reconnus&#x20;
+* Ne pas oublier --`append-domain` : concaténer le sous domaine de la seclist au domaine&#x20;
+* Ajouter `–k` pour ignorer le certificat TLS non reconnu par gobuster
 
 <figure><img src=".gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
 

@@ -6,8 +6,6 @@ Lien Gitbook: [ https://olb.gitbook.io/thm-ctf-write-ups/bolt](https://olb.gitbo
 
 IP=10.10.247.170&#x20;
 
-Site Apache => [http://10.10.247.170/](http://10.10.247.170/)&#x20;
-
 ## Nmap
 
 <figure><img src=".gitbook/assets/GetImage.png" alt=""><figcaption></figcaption></figure>
@@ -66,8 +64,8 @@ Après plusieurs tentative je fini par y arriver en ajoutant la variable `TARGET
 
 <figure><img src=".gitbook/assets/GetImage6.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/GetImage7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot_2024-05-17_19-02-02.png" alt=""><figcaption></figcaption></figure>
 
-Ensuite en mode fainéant , j'ai cherché directement le fichier flag.txt n'ayant rien trouvé aux endroits habituels (racine ou /root ou /home/user)
+Ensuite cherchons directement le fichier flag.txt&#x20;
 
 <figure><img src=".gitbook/assets/GetImage8.png" alt=""><figcaption></figcaption></figure>
