@@ -21,6 +21,12 @@ layout:
 
 Site Gitbook : [https://olb.gitbook.io/thm-ctf-write-ups/](https://olb.gitbook.io/thm-ctf-write-ups/)
 
-Mes write-ups des CTF effectués sur 'Try Hack me' : [https://tryhackme.com](https://tryhackme.com)
+Write-ups  CTF&#x20;
 
-Mon profil THM : [https://tryhackme.com/p/OlivierLB](https://tryhackme.com/p/OlivierLB)
+Profil THM : [https://tryhackme.com/p/OlivierLB](https://tryhackme.com/p/OlivierLB)
+
+<div align="left">
+
+<figure><img src=".gitbook/assets/OlivierLB.png" alt=""><figcaption></figcaption></figure>
+
+</div>
