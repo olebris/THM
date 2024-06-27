@@ -25,8 +25,3 @@ Write-ups  CTF&#x20;
 
 Profil THM : [https://tryhackme.com/p/OlivierLB](https://tryhackme.com/p/OlivierLB)
 
-<div align="left">
-
-<figure><img src=".gitbook/assets/OlivierLB.png" alt=""><figcaption></figcaption></figure>
-
-</div>
